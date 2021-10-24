@@ -1,0 +1,329 @@
+2020-05-08 13:43:37,174 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2020-05-08 13:43:37,221 - data_prep - INFO - Generating training ranking labels
+2020-05-08 13:43:37,246 - data_prep - INFO - Generating validation ranking labels
+2020-05-08 13:43:37,247 - data_prep - INFO - Generating test ranking labels
+2020-05-08 13:43:37,248 - __main__ - INFO - Initializing model
+2020-05-08 13:43:37,249 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2020-05-08 13:43:37,249 - __main__ - INFO - Fitting model
+2020-05-08 13:43:37,250 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2020-05-08 13:43:37,251 - frml_python.sampler - INFO - Initializing sampler for SGD
+2020-05-08 13:43:37,803 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2020-05-08 13:43:38,384 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2020-05-08 13:43:38,935 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2020-05-08 13:43:39,519 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2020-05-08 13:43:40,098 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2020-05-08 13:43:40,653 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2020-05-08 13:43:41,280 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2020-05-08 13:43:41,858 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2020-05-08 13:43:42,440 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2020-05-08 13:43:43,006 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2020-05-08 13:43:43,587 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2020-05-08 13:43:44,172 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2020-05-08 13:43:44,728 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2020-05-08 13:43:45,316 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2020-05-08 13:43:45,868 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2020-05-08 13:43:46,465 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2020-05-08 13:43:47,029 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2020-05-08 13:43:47,601 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2020-05-08 13:43:48,184 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2020-05-08 13:43:48,739 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2020-05-08 13:43:49,332 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2020-05-08 13:43:49,883 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2020-05-08 13:43:50,484 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2020-05-08 13:43:51,060 - frml_python.model - INFO - Iteration 60000/100000: Current MAP is 0.829, mean trials/iter since last report = 3.383, squared L_norm = 9707.541
+2020-05-08 13:43:51,618 - frml_python.model - INFO - Iteration 62500/100000: Current MAP is 0.832, mean trials/iter since last report = 3.492, squared L_norm = 9933.190
+2020-05-08 13:43:52,198 - frml_python.model - INFO - Iteration 65000/100000: Current MAP is 0.832, mean trials/iter since last report = 3.495, squared L_norm = 10155.717
+2020-05-08 13:43:52,748 - frml_python.model - INFO - Iteration 67500/100000: Current MAP is 0.833, mean trials/iter since last report = 3.522, squared L_norm = 10370.975
+2020-05-08 13:43:53,338 - frml_python.model - INFO - Iteration 70000/100000: Current MAP is 0.834, mean trials/iter since last report = 3.566, squared L_norm = 10579.857
+2020-05-08 13:43:53,884 - frml_python.model - INFO - Iteration 72500/100000: Current MAP is 0.834, mean trials/iter since last report = 3.638, squared L_norm = 10775.947
+2020-05-08 13:43:54,459 - frml_python.model - INFO - Iteration 75000/100000: Current MAP is 0.835, mean trials/iter since last report = 3.629, squared L_norm = 10973.334
+2020-05-08 13:43:55,009 - frml_python.model - INFO - Iteration 77500/100000: Current MAP is 0.835, mean trials/iter since last report = 3.674, squared L_norm = 11168.183
+2020-05-08 13:43:55,573 - frml_python.model - INFO - Iteration 80000/100000: Current MAP is 0.837, mean trials/iter since last report = 3.749, squared L_norm = 11348.223
+2020-05-08 13:43:56,148 - frml_python.model - INFO - Iteration 82500/100000: Current MAP is 0.839, mean trials/iter since last report = 3.744, squared L_norm = 11531.636
+2020-05-08 13:43:56,693 - frml_python.model - INFO - Iteration 85000/100000: Current MAP is 0.839, mean trials/iter since last report = 3.735, squared L_norm = 11716.552
+2020-05-08 13:43:57,267 - frml_python.model - INFO - Iteration 87500/100000: Current MAP is 0.841, mean trials/iter since last report = 3.808, squared L_norm = 11886.364
+2020-05-08 13:43:57,812 - frml_python.model - INFO - Iteration 90000/100000: Current MAP is 0.840, mean trials/iter since last report = 3.839, squared L_norm = 12051.015
+2020-05-08 13:43:58,382 - frml_python.model - INFO - Iteration 92500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.852, squared L_norm = 12216.175
+2020-05-08 13:43:58,924 - frml_python.model - INFO - Iteration 95000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.899, squared L_norm = 12373.873
+2020-05-08 13:43:59,497 - frml_python.model - INFO - Iteration 97500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.942, squared L_norm = 12525.717
+2020-05-08 13:44:00,054 - frml_python.model - INFO - Iteration 100000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.996, squared L_norm = 12669.827
+2020-05-08 13:44:00,054 - __main__ - INFO - Evaluating model on test set
+2020-05-08 13:44:00,086 - __main__ - INFO - Test MAP is 0.798
+2021-10-20 08:06:00,288 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 08:06:00,323 - data_prep - INFO - Generating training ranking labels
+2021-10-20 08:06:00,347 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 08:06:00,349 - data_prep - INFO - Generating test ranking labels
+2021-10-20 08:06:00,350 - __main__ - INFO - Initializing model
+2021-10-20 08:06:00,350 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 08:06:00,350 - __main__ - INFO - Fitting model
+2021-10-20 08:06:00,352 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 08:06:00,352 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 08:06:00,930 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 08:06:01,511 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 08:06:02,090 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2021-10-20 08:06:02,677 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2021-10-20 08:06:03,262 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2021-10-20 08:06:03,845 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2021-10-20 08:06:04,436 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2021-10-20 08:06:05,027 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2021-10-20 08:06:05,621 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2021-10-20 08:06:06,213 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2021-10-20 08:06:06,809 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2021-10-20 08:06:07,415 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2021-10-20 08:06:08,008 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2021-10-20 08:06:08,605 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2021-10-20 08:06:09,197 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2021-10-20 08:06:09,791 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2021-10-20 08:06:10,389 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2021-10-20 08:06:10,985 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2021-10-20 08:06:11,578 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2021-10-20 08:06:12,169 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2021-10-20 08:06:12,765 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2021-10-20 08:06:13,365 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2021-10-20 08:06:13,958 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2021-10-20 08:06:14,555 - frml_python.model - INFO - Iteration 60000/100000: Current MAP is 0.829, mean trials/iter since last report = 3.383, squared L_norm = 9707.541
+2021-10-20 08:06:15,146 - frml_python.model - INFO - Iteration 62500/100000: Current MAP is 0.832, mean trials/iter since last report = 3.492, squared L_norm = 9933.190
+2021-10-20 08:06:15,740 - frml_python.model - INFO - Iteration 65000/100000: Current MAP is 0.832, mean trials/iter since last report = 3.495, squared L_norm = 10155.717
+2021-10-20 08:06:16,332 - frml_python.model - INFO - Iteration 67500/100000: Current MAP is 0.833, mean trials/iter since last report = 3.522, squared L_norm = 10370.975
+2021-10-20 08:06:16,925 - frml_python.model - INFO - Iteration 70000/100000: Current MAP is 0.834, mean trials/iter since last report = 3.566, squared L_norm = 10579.857
+2021-10-20 08:06:17,520 - frml_python.model - INFO - Iteration 72500/100000: Current MAP is 0.834, mean trials/iter since last report = 3.638, squared L_norm = 10775.947
+2021-10-20 08:06:18,112 - frml_python.model - INFO - Iteration 75000/100000: Current MAP is 0.835, mean trials/iter since last report = 3.629, squared L_norm = 10973.334
+2021-10-20 08:06:18,706 - frml_python.model - INFO - Iteration 77500/100000: Current MAP is 0.835, mean trials/iter since last report = 3.674, squared L_norm = 11168.183
+2021-10-20 08:06:19,302 - frml_python.model - INFO - Iteration 80000/100000: Current MAP is 0.837, mean trials/iter since last report = 3.749, squared L_norm = 11348.223
+2021-10-20 08:06:19,895 - frml_python.model - INFO - Iteration 82500/100000: Current MAP is 0.839, mean trials/iter since last report = 3.744, squared L_norm = 11531.636
+2021-10-20 08:06:20,492 - frml_python.model - INFO - Iteration 85000/100000: Current MAP is 0.839, mean trials/iter since last report = 3.735, squared L_norm = 11716.552
+2021-10-20 08:06:21,099 - frml_python.model - INFO - Iteration 87500/100000: Current MAP is 0.841, mean trials/iter since last report = 3.808, squared L_norm = 11886.364
+2021-10-20 08:06:21,690 - frml_python.model - INFO - Iteration 90000/100000: Current MAP is 0.840, mean trials/iter since last report = 3.839, squared L_norm = 12051.015
+2021-10-20 08:06:22,283 - frml_python.model - INFO - Iteration 92500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.852, squared L_norm = 12216.175
+2021-10-20 08:06:22,872 - frml_python.model - INFO - Iteration 95000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.899, squared L_norm = 12373.873
+2021-10-20 08:06:23,464 - frml_python.model - INFO - Iteration 97500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.942, squared L_norm = 12525.717
+2021-10-20 08:06:24,057 - frml_python.model - INFO - Iteration 100000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.996, squared L_norm = 12669.827
+2021-10-20 08:06:24,057 - __main__ - INFO - Evaluating model on test set
+2021-10-20 08:06:24,087 - __main__ - INFO - Test MAP is 0.798
+2021-10-20 08:08:32,899 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 08:08:32,936 - data_prep - INFO - Generating training ranking labels
+2021-10-20 08:08:32,960 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 08:08:32,961 - data_prep - INFO - Generating test ranking labels
+2021-10-20 08:08:32,962 - __main__ - INFO - Initializing model
+2021-10-20 08:08:32,962 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 08:08:32,964 - __main__ - INFO - Fitting model
+2021-10-20 08:08:32,964 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 08:08:32,965 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 08:08:33,534 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 08:08:34,112 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 08:08:34,695 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2021-10-20 08:08:35,284 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2021-10-20 08:08:35,890 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2021-10-20 08:08:36,474 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2021-10-20 08:08:37,063 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2021-10-20 08:08:37,654 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2021-10-20 08:08:38,243 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2021-10-20 08:08:38,837 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2021-10-20 08:08:39,432 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2021-10-20 08:08:40,028 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2021-10-20 08:08:40,623 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2021-10-20 08:08:41,221 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2021-10-20 08:08:41,821 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2021-10-20 08:08:42,420 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2021-10-20 08:08:43,016 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2021-10-20 08:08:43,613 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2021-10-20 08:08:44,212 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2021-10-20 08:08:44,811 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2021-10-20 08:08:45,411 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2021-10-20 08:08:46,008 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2021-10-20 08:08:46,606 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2021-10-20 08:08:47,201 - frml_python.model - INFO - Iteration 60000/100000: Current MAP is 0.829, mean trials/iter since last report = 3.383, squared L_norm = 9707.541
+2021-10-20 08:08:47,799 - frml_python.model - INFO - Iteration 62500/100000: Current MAP is 0.832, mean trials/iter since last report = 3.492, squared L_norm = 9933.190
+2021-10-20 08:08:48,397 - frml_python.model - INFO - Iteration 65000/100000: Current MAP is 0.832, mean trials/iter since last report = 3.495, squared L_norm = 10155.717
+2021-10-20 08:08:48,995 - frml_python.model - INFO - Iteration 67500/100000: Current MAP is 0.833, mean trials/iter since last report = 3.522, squared L_norm = 10370.975
+2021-10-20 08:08:49,591 - frml_python.model - INFO - Iteration 70000/100000: Current MAP is 0.834, mean trials/iter since last report = 3.566, squared L_norm = 10579.857
+2021-10-20 08:08:50,191 - frml_python.model - INFO - Iteration 72500/100000: Current MAP is 0.834, mean trials/iter since last report = 3.638, squared L_norm = 10775.947
+2021-10-20 08:08:50,788 - frml_python.model - INFO - Iteration 75000/100000: Current MAP is 0.835, mean trials/iter since last report = 3.629, squared L_norm = 10973.334
+2021-10-20 08:08:51,383 - frml_python.model - INFO - Iteration 77500/100000: Current MAP is 0.835, mean trials/iter since last report = 3.674, squared L_norm = 11168.183
+2021-10-20 08:08:51,980 - frml_python.model - INFO - Iteration 80000/100000: Current MAP is 0.837, mean trials/iter since last report = 3.749, squared L_norm = 11348.223
+2021-10-20 08:08:52,578 - frml_python.model - INFO - Iteration 82500/100000: Current MAP is 0.839, mean trials/iter since last report = 3.744, squared L_norm = 11531.636
+2021-10-20 08:08:53,169 - frml_python.model - INFO - Iteration 85000/100000: Current MAP is 0.839, mean trials/iter since last report = 3.735, squared L_norm = 11716.552
+2021-10-20 08:08:53,761 - frml_python.model - INFO - Iteration 87500/100000: Current MAP is 0.841, mean trials/iter since last report = 3.808, squared L_norm = 11886.364
+2021-10-20 08:08:54,352 - frml_python.model - INFO - Iteration 90000/100000: Current MAP is 0.840, mean trials/iter since last report = 3.839, squared L_norm = 12051.015
+2021-10-20 08:08:54,947 - frml_python.model - INFO - Iteration 92500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.852, squared L_norm = 12216.175
+2021-10-20 08:08:55,537 - frml_python.model - INFO - Iteration 95000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.899, squared L_norm = 12373.873
+2021-10-20 08:08:56,127 - frml_python.model - INFO - Iteration 97500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.942, squared L_norm = 12525.717
+2021-10-20 08:08:56,719 - frml_python.model - INFO - Iteration 100000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.996, squared L_norm = 12669.827
+2021-10-20 08:08:56,719 - __main__ - INFO - Evaluating model on test set
+2021-10-20 08:08:56,749 - __main__ - INFO - Test MAP is 0.798
+2021-10-20 09:22:15,925 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:22:15,963 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:22:15,987 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:22:15,988 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:22:15,989 - __main__ - INFO - Initializing model
+2021-10-20 09:22:15,989 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:22:15,990 - __main__ - INFO - Fitting model
+2021-10-20 09:22:15,991 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:22:15,991 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:22:16,558 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 09:22:17,133 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 09:22:17,713 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2021-10-20 09:22:18,291 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2021-10-20 09:22:18,875 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2021-10-20 09:22:19,459 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2021-10-20 09:22:20,047 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2021-10-20 09:22:20,642 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2021-10-20 09:22:21,267 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2021-10-20 09:22:21,861 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2021-10-20 09:22:22,456 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2021-10-20 09:22:23,053 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2021-10-20 09:22:23,646 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2021-10-20 09:22:24,242 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2021-10-20 09:22:24,839 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2021-10-20 09:22:25,434 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2021-10-20 09:22:26,035 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2021-10-20 09:22:26,631 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2021-10-20 09:22:27,260 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2021-10-20 09:22:27,861 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2021-10-20 09:22:28,460 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2021-10-20 09:22:29,059 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2021-10-20 09:22:29,660 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2021-10-20 09:22:30,258 - frml_python.model - INFO - Iteration 60000/100000: Current MAP is 0.829, mean trials/iter since last report = 3.383, squared L_norm = 9707.541
+2021-10-20 09:22:30,859 - frml_python.model - INFO - Iteration 62500/100000: Current MAP is 0.832, mean trials/iter since last report = 3.492, squared L_norm = 9933.190
+2021-10-20 09:22:31,457 - frml_python.model - INFO - Iteration 65000/100000: Current MAP is 0.832, mean trials/iter since last report = 3.495, squared L_norm = 10155.717
+2021-10-20 09:22:32,052 - frml_python.model - INFO - Iteration 67500/100000: Current MAP is 0.833, mean trials/iter since last report = 3.522, squared L_norm = 10370.975
+2021-10-20 09:22:32,652 - frml_python.model - INFO - Iteration 70000/100000: Current MAP is 0.834, mean trials/iter since last report = 3.566, squared L_norm = 10579.857
+2021-10-20 09:22:33,251 - frml_python.model - INFO - Iteration 72500/100000: Current MAP is 0.834, mean trials/iter since last report = 3.638, squared L_norm = 10775.947
+2021-10-20 09:22:33,851 - frml_python.model - INFO - Iteration 75000/100000: Current MAP is 0.835, mean trials/iter since last report = 3.629, squared L_norm = 10973.334
+2021-10-20 09:22:34,479 - frml_python.model - INFO - Iteration 77500/100000: Current MAP is 0.835, mean trials/iter since last report = 3.674, squared L_norm = 11168.183
+2021-10-20 09:22:35,075 - frml_python.model - INFO - Iteration 80000/100000: Current MAP is 0.837, mean trials/iter since last report = 3.749, squared L_norm = 11348.223
+2021-10-20 09:22:35,672 - frml_python.model - INFO - Iteration 82500/100000: Current MAP is 0.839, mean trials/iter since last report = 3.744, squared L_norm = 11531.636
+2021-10-20 09:22:36,271 - frml_python.model - INFO - Iteration 85000/100000: Current MAP is 0.839, mean trials/iter since last report = 3.735, squared L_norm = 11716.552
+2021-10-20 09:22:36,864 - frml_python.model - INFO - Iteration 87500/100000: Current MAP is 0.841, mean trials/iter since last report = 3.808, squared L_norm = 11886.364
+2021-10-20 09:22:37,463 - frml_python.model - INFO - Iteration 90000/100000: Current MAP is 0.840, mean trials/iter since last report = 3.839, squared L_norm = 12051.015
+2021-10-20 09:22:38,058 - frml_python.model - INFO - Iteration 92500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.852, squared L_norm = 12216.175
+2021-10-20 09:22:38,652 - frml_python.model - INFO - Iteration 95000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.899, squared L_norm = 12373.873
+2021-10-20 09:22:39,249 - frml_python.model - INFO - Iteration 97500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.942, squared L_norm = 12525.717
+2021-10-20 09:22:39,845 - frml_python.model - INFO - Iteration 100000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.996, squared L_norm = 12669.827
+2021-10-20 09:22:39,846 - __main__ - INFO - Evaluating model on test set
+2021-10-20 09:22:39,874 - __main__ - INFO - Test MAP is 0.798
+2021-10-20 09:23:55,749 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:23:55,788 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:23:55,811 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:23:55,813 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:23:55,814 - __main__ - INFO - Initializing model
+2021-10-20 09:23:55,814 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:23:55,815 - __main__ - INFO - Fitting model
+2021-10-20 09:23:55,816 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:23:55,818 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:23:56,389 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 09:23:56,965 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 09:29:41,986 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:29:42,022 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:29:42,045 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:29:42,046 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:29:42,047 - __main__ - INFO - Initializing model
+2021-10-20 09:29:42,047 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:29:42,048 - __main__ - INFO - Fitting model
+2021-10-20 09:29:42,048 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:29:42,049 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:29:42,613 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 09:29:43,175 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 09:29:43,743 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2021-10-20 09:29:44,310 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2021-10-20 09:29:44,885 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2021-10-20 09:29:45,457 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2021-10-20 09:29:46,030 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2021-10-20 09:29:46,611 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2021-10-20 09:29:47,177 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2021-10-20 09:29:47,749 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2021-10-20 09:29:48,317 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2021-10-20 09:29:48,898 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2021-10-20 09:29:49,473 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2021-10-20 09:29:50,045 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2021-10-20 09:29:50,621 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2021-10-20 09:29:51,187 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2021-10-20 09:29:51,760 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2021-10-20 09:29:52,329 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2021-10-20 09:29:52,899 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2021-10-20 09:29:53,469 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2021-10-20 09:29:54,039 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2021-10-20 09:29:54,614 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2021-10-20 09:29:55,188 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2021-10-20 09:37:50,390 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:37:50,426 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:37:50,449 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:37:50,450 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:37:50,452 - __main__ - INFO - Initializing model
+2021-10-20 09:37:50,452 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:37:50,453 - __main__ - INFO - Fitting model
+2021-10-20 09:37:50,453 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:37:50,454 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:38:14,437 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:38:14,474 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:38:14,497 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:38:14,498 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:38:14,499 - __main__ - INFO - Initializing model
+2021-10-20 09:38:14,499 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:38:14,500 - __main__ - INFO - Fitting model
+2021-10-20 09:38:14,500 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:38:14,501 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:38:21,216 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:38:21,252 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:38:21,275 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:38:21,276 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:38:21,277 - __main__ - INFO - Initializing model
+2021-10-20 09:38:21,277 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:38:21,278 - __main__ - INFO - Fitting model
+2021-10-20 09:38:21,278 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:38:21,279 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:40:04,048 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:40:04,084 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:40:04,107 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:40:04,108 - data_prep - INFO - Generating test ranking labels
+2021-10-20 09:40:04,109 - __main__ - INFO - Initializing model
+2021-10-20 09:40:04,109 - frml_python.model - INFO - Using fixed random seed of 0 for this run
+2021-10-20 09:40:04,110 - __main__ - INFO - Fitting model
+2021-10-20 09:40:04,112 - frml_python.model - INFO - No warm start specified, initializing with uniform Gaussian entries
+2021-10-20 09:40:04,113 - frml_python.sampler - INFO - Initializing sampler for SGD
+2021-10-20 09:40:04,662 - frml_python.model - INFO - Iteration 2500/100000: Current MAP is 0.541, mean trials/iter since last report = 1.142, squared L_norm = 2090.424
+2021-10-20 09:40:05,249 - frml_python.model - INFO - Iteration 5000/100000: Current MAP is 0.572, mean trials/iter since last report = 1.503, squared L_norm = 2334.460
+2021-10-20 09:40:05,811 - frml_python.model - INFO - Iteration 7500/100000: Current MAP is 0.604, mean trials/iter since last report = 1.621, squared L_norm = 2602.038
+2021-10-20 09:40:06,368 - frml_python.model - INFO - Iteration 10000/100000: Current MAP is 0.644, mean trials/iter since last report = 1.711, squared L_norm = 2944.202
+2021-10-20 09:40:06,929 - frml_python.model - INFO - Iteration 12500/100000: Current MAP is 0.679, mean trials/iter since last report = 1.863, squared L_norm = 3372.292
+2021-10-20 09:40:07,488 - frml_python.model - INFO - Iteration 15000/100000: Current MAP is 0.704, mean trials/iter since last report = 1.982, squared L_norm = 3831.842
+2021-10-20 09:40:08,056 - frml_python.model - INFO - Iteration 17500/100000: Current MAP is 0.722, mean trials/iter since last report = 2.144, squared L_norm = 4319.261
+2021-10-20 09:40:08,624 - frml_python.model - INFO - Iteration 20000/100000: Current MAP is 0.740, mean trials/iter since last report = 2.282, squared L_norm = 4772.478
+2021-10-20 09:40:09,228 - frml_python.model - INFO - Iteration 22500/100000: Current MAP is 0.755, mean trials/iter since last report = 2.354, squared L_norm = 5204.784
+2021-10-20 09:40:09,805 - frml_python.model - INFO - Iteration 25000/100000: Current MAP is 0.765, mean trials/iter since last report = 2.490, squared L_norm = 5606.683
+2021-10-20 09:40:10,373 - frml_python.model - INFO - Iteration 27500/100000: Current MAP is 0.773, mean trials/iter since last report = 2.653, squared L_norm = 5988.712
+2021-10-20 09:40:10,953 - frml_python.model - INFO - Iteration 30000/100000: Current MAP is 0.782, mean trials/iter since last report = 2.704, squared L_norm = 6354.215
+2021-10-20 09:40:11,530 - frml_python.model - INFO - Iteration 32500/100000: Current MAP is 0.791, mean trials/iter since last report = 2.776, squared L_norm = 6714.401
+2021-10-20 09:40:12,102 - frml_python.model - INFO - Iteration 35000/100000: Current MAP is 0.798, mean trials/iter since last report = 2.926, squared L_norm = 7035.170
+2021-10-20 09:40:12,671 - frml_python.model - INFO - Iteration 37500/100000: Current MAP is 0.802, mean trials/iter since last report = 3.006, squared L_norm = 7344.438
+2021-10-20 09:40:13,242 - frml_python.model - INFO - Iteration 40000/100000: Current MAP is 0.807, mean trials/iter since last report = 3.074, squared L_norm = 7646.851
+2021-10-20 09:40:13,814 - frml_python.model - INFO - Iteration 42500/100000: Current MAP is 0.812, mean trials/iter since last report = 3.101, squared L_norm = 7939.921
+2021-10-20 09:40:14,382 - frml_python.model - INFO - Iteration 45000/100000: Current MAP is 0.813, mean trials/iter since last report = 3.180, squared L_norm = 8218.759
+2021-10-20 09:40:14,950 - frml_python.model - INFO - Iteration 47500/100000: Current MAP is 0.818, mean trials/iter since last report = 3.252, squared L_norm = 8482.184
+2021-10-20 09:40:15,516 - frml_python.model - INFO - Iteration 50000/100000: Current MAP is 0.821, mean trials/iter since last report = 3.258, squared L_norm = 8739.118
+2021-10-20 09:40:16,080 - frml_python.model - INFO - Iteration 52500/100000: Current MAP is 0.825, mean trials/iter since last report = 3.333, squared L_norm = 8988.506
+2021-10-20 09:40:16,649 - frml_python.model - INFO - Iteration 55000/100000: Current MAP is 0.827, mean trials/iter since last report = 3.372, squared L_norm = 9229.748
+2021-10-20 09:40:17,215 - frml_python.model - INFO - Iteration 57500/100000: Current MAP is 0.829, mean trials/iter since last report = 3.396, squared L_norm = 9466.881
+2021-10-20 09:40:17,784 - frml_python.model - INFO - Iteration 60000/100000: Current MAP is 0.829, mean trials/iter since last report = 3.383, squared L_norm = 9707.541
+2021-10-20 09:40:18,349 - frml_python.model - INFO - Iteration 62500/100000: Current MAP is 0.832, mean trials/iter since last report = 3.492, squared L_norm = 9933.190
+2021-10-20 09:40:18,914 - frml_python.model - INFO - Iteration 65000/100000: Current MAP is 0.832, mean trials/iter since last report = 3.495, squared L_norm = 10155.717
+2021-10-20 09:40:19,478 - frml_python.model - INFO - Iteration 67500/100000: Current MAP is 0.833, mean trials/iter since last report = 3.522, squared L_norm = 10370.975
+2021-10-20 09:40:20,044 - frml_python.model - INFO - Iteration 70000/100000: Current MAP is 0.834, mean trials/iter since last report = 3.566, squared L_norm = 10579.857
+2021-10-20 09:40:20,605 - frml_python.model - INFO - Iteration 72500/100000: Current MAP is 0.834, mean trials/iter since last report = 3.638, squared L_norm = 10775.947
+2021-10-20 09:40:21,181 - frml_python.model - INFO - Iteration 75000/100000: Current MAP is 0.835, mean trials/iter since last report = 3.629, squared L_norm = 10973.334
+2021-10-20 09:40:21,745 - frml_python.model - INFO - Iteration 77500/100000: Current MAP is 0.835, mean trials/iter since last report = 3.674, squared L_norm = 11168.183
+2021-10-20 09:40:22,305 - frml_python.model - INFO - Iteration 80000/100000: Current MAP is 0.837, mean trials/iter since last report = 3.749, squared L_norm = 11348.223
+2021-10-20 09:40:22,868 - frml_python.model - INFO - Iteration 82500/100000: Current MAP is 0.839, mean trials/iter since last report = 3.744, squared L_norm = 11531.636
+2021-10-20 09:40:23,436 - frml_python.model - INFO - Iteration 85000/100000: Current MAP is 0.839, mean trials/iter since last report = 3.735, squared L_norm = 11716.552
+2021-10-20 09:40:23,997 - frml_python.model - INFO - Iteration 87500/100000: Current MAP is 0.841, mean trials/iter since last report = 3.808, squared L_norm = 11886.364
+2021-10-20 09:40:24,558 - frml_python.model - INFO - Iteration 90000/100000: Current MAP is 0.840, mean trials/iter since last report = 3.839, squared L_norm = 12051.015
+2021-10-20 09:40:25,121 - frml_python.model - INFO - Iteration 92500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.852, squared L_norm = 12216.175
+2021-10-20 09:40:25,684 - frml_python.model - INFO - Iteration 95000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.899, squared L_norm = 12373.873
+2021-10-20 09:40:26,246 - frml_python.model - INFO - Iteration 97500/100000: Current MAP is 0.842, mean trials/iter since last report = 3.942, squared L_norm = 12525.717
+2021-10-20 09:40:26,807 - frml_python.model - INFO - Iteration 100000/100000: Current MAP is 0.842, mean trials/iter since last report = 3.996, squared L_norm = 12669.827
+2021-10-20 09:40:26,807 - __main__ - INFO - Evaluating model on test set
+2021-10-20 09:40:26,833 - __main__ - INFO - Test MAP is 0.798
+2021-10-20 09:56:02,125 - __main__ - INFO - Loading data from ../data/IN300_folds.mat
+2021-10-20 09:56:02,163 - data_prep - INFO - Generating training ranking labels
+2021-10-20 09:56:02,187 - data_prep - INFO - Generating validation ranking labels
+2021-10-20 09:56:02,188 - data_prep - INFO - Generating test ranking labels

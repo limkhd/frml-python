@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>frml_python.evaluator &mdash; frml-python  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> frml-python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">frml-python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>frml_python.evaluator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for frml_python.evaluator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Module implementing Evaluator class</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">m</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Evaluator"><a class="viewcode-back" href="../../frml_python.html#frml_python.evaluator.Evaluator">[docs]</a><span class="k">class</span> <span class="nc">Evaluator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class to evaluate FRML models based on information retrieval metrics with the training set.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    loss_weights_type : str</span>
+<span class="sd">        Type of weighting function for WARP loss.</span>
+<span class="sd">        Currently only accepts &quot;rec&quot; for reciprocal loss as described in Weston et. al.</span>
+<span class="sd">    num_iters : int</span>
+<span class="sd">        Number of iterations to run SGD optimizer</span>
+<span class="sd">    stepsize : float</span>
+<span class="sd">        Step size for stochastic gradient descent</span>
+<span class="sd">    d : int</span>
+<span class="sd">        Target dimension of the low-rank transformation</span>
+<span class="sd">    batchsize : int</span>
+<span class="sd">        Minibatch size for gradient descent. `batchsize=2` is recommended.</span>
+<span class="sd">    report_interval : int</span>
+<span class="sd">        Number of iterations between successive reports of validation loss</span>
+<span class="sd">    lam : float</span>
+<span class="sd">        Regularization parameter</span>
+<span class="sd">    Xval : numpy.ndarray</span>
+<span class="sd">        A :math:`n \\times input\\_dim` matrix where n is the number of validation examples</span>
+<span class="sd">        and input_dim is the input dimensionality</span>
+<span class="sd">    Yval : list</span>
+<span class="sd">        A length n list of `namedtuples` where n is the number of validation examples in Xval. Each `namedtuple` associated with a validation example contains two fields `sim` and `dif` which are lists of indices of the similar and dissimilar training set examples.</span>
+<span class="sd">    WARP_sampling_limit : int</span>
+<span class="sd">        Maximum trials for sampling the WARP loss. See [1]</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        Optional random seed for reproducibility</span>
+<span class="sd">    warm_start_L : numpy.ndarray</span>
+<span class="sd">        Initialization matrix for `L`. If `None`, will be initialized by a random</span>
+<span class="sd">        uniform Gaussian matrix.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">validation_measure</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">):</span>
+        <span class="c1"># can add iteration numbers for storage later</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xtrain</span> <span class="o">=</span> <span class="n">Xtrain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ytrain</span> <span class="o">=</span> <span class="n">Ytrain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_measure</span> <span class="o">=</span> <span class="n">validation_measure</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="Evaluator.get_validation_score"><a class="viewcode-back" href="../../frml_python.html#frml_python.evaluator.Evaluator.get_validation_score">[docs]</a>    <span class="k">def</span> <span class="nf">get_validation_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frml_model</span><span class="p">,</span> <span class="n">Xval</span><span class="p">,</span> <span class="n">Yval</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns model score on validation set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frml_model : FRML_model</span>
+<span class="sd">            FRML_model instance that has the learnt Mahalanobis metric on the data</span>
+<span class="sd">        Xval : numpy.ndarray</span>
+<span class="sd">            A :math:`n \\times input\\_dim` matrix where n is the number of validation examples</span>
+<span class="sd">            and input_dim is the input dimensionality</span>
+<span class="sd">        Yval: numpy.ndarray</span>
+<span class="sd">            A :math:`n_{validation} \\times 1` label vector</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        score : float</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_ranking</span><span class="p">(</span>
+            <span class="n">frml_model</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Xtrain</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Ytrain</span><span class="p">,</span>
+            <span class="n">Xval</span><span class="p">,</span>
+            <span class="n">Yval</span><span class="p">,</span>
+            <span class="n">measure</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">validation_measure</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">score</span></div>
+
+<div class="viewcode-block" id="Evaluator.generate_labels"><a class="viewcode-back" href="../../frml_python.html#frml_python.evaluator.Evaluator.generate_labels">[docs]</a>    <span class="k">def</span> <span class="nf">generate_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">Ytest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates ranking labels for each point in test set from classification labels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Ytrain : numpy.ndarray</span>
+<span class="sd">            A :math:`n_{train} \\times 1` label vector</span>
+<span class="sd">        Ytest: numpy.ndarray</span>
+<span class="sd">            A :math:`n_{test} \\times 1` label vector</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        labels : numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ntrain</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ytrain</span><span class="p">)</span>
+        <span class="n">ntest</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ytest</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ntest</span><span class="p">,</span> <span class="n">ntrain</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ntest</span><span class="p">):</span>
+            <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">Ytest</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sim</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">labels</span></div>
+
+<div class="viewcode-block" id="Evaluator.evaluate_ranking"><a class="viewcode-back" href="../../frml_python.html#frml_python.evaluator.Evaluator.evaluate_ranking">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_ranking</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">frml_model</span><span class="p">,</span>
+        <span class="n">Xtrain</span><span class="p">,</span>
+        <span class="n">Ytrain</span><span class="p">,</span>
+        <span class="n">Xtest</span><span class="p">,</span>
+        <span class="n">Ytest</span><span class="p">,</span>
+        <span class="n">measure</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">,</span>
+        <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluates test set performance of the model on a given metric and gives </span>
+<span class="sd">        the average result across all test samples.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frml_model : FRML_model</span>
+<span class="sd">            FRML_model instance that has the learnt Mahalanobis metric on the data</span>
+<span class="sd">        Xtrain : numpy.ndarray</span>
+<span class="sd">            A :math:`n_{train} \\times d_{input}` matrix where n is the number of training </span>
+<span class="sd">            examples and :math:`d_{input}` is the input dimensionality</span>
+<span class="sd">        Ytrain : numpy.ndarray</span>
+<span class="sd">            A :math:`n_{train} \\times 1` label vector</span>
+<span class="sd">        Xtest : numpy. ndarray</span>
+<span class="sd">            A :math:`n_{test} \\times d_{input}` matrix where n is the number of test examples</span>
+<span class="sd">            and :math:`d_{input}` is the input dimensionality</span>
+<span class="sd">        Ytest: numpy.ndarray</span>
+<span class="sd">            A :math:`n_{test} \\times 1` label vector</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        score : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">get_distances</span><span class="p">(</span><span class="n">frml_model</span><span class="p">,</span> <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_labels</span><span class="p">(</span><span class="n">Ytrain</span><span class="p">,</span> <span class="n">Ytest</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">measure</span><span class="p">)(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Evaluator.get_distances"><a class="viewcode-back" href="../../frml_python.html#frml_python.evaluator.Evaluator.get_distances">[docs]</a>    <span class="k">def</span> <span class="nf">get_distances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frml_model</span><span class="p">,</span> <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates pairwise Mahalanobis distances between all examples of Xtrain and Xtest</span>
+<span class="sd">        using the Mahalanobis metric given in frml_model</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frml_model : FRML_model</span>
+<span class="sd">            FRML_model instance that has the learnt Mahalanobis metric on the data</span>
+<span class="sd">        Xtrain : numpy.ndarray</span>
+<span class="sd">            A :math:`n_{train} \\times d_{input}` matrix where n is the number of training examples </span>
+<span class="sd">            and :math:`d_{input}` is the input dimensionality</span>
+<span class="sd">        Xtest : numpy. ndarray</span>
+<span class="sd">            A :math:`n_{test} \\times d_{input}` matrix where n is the number of test examples</span>
+<span class="sd">            and :math:`d_{input}` is the input dimensionality</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            A :math:`n_{test} \\times n_{train}` matrix of distances</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">LXtrT</span> <span class="o">=</span> <span class="n">frml_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">)</span>
+        <span class="n">LXteT</span> <span class="o">=</span> <span class="n">frml_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
+        <span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pairwise_distances</span><span class="p">(</span><span class="n">LXteT</span><span class="p">,</span> <span class="n">LXtrT</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dist_matrix</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Daryl Lim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

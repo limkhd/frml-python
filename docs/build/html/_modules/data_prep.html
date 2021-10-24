@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_prep &mdash; frml-python  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> frml-python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">frml-python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>data_prep</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for data_prep</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;data_prep.py</span>
+<span class="sd">====================</span>
+<span class="sd">Module performing data loading and formatting to model input</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">s</span>
+<span class="kn">import</span> <span class="nn">frml_python.label_utils</span>
+
+<span class="c1"># Init logger</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Keys in the .mat file</span>
+<span class="n">fold_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Yval&quot;</span><span class="p">,</span> <span class="s2">&quot;Ytrain&quot;</span><span class="p">,</span> <span class="s2">&quot;Ytest&quot;</span><span class="p">,</span> <span class="s2">&quot;Ktrain&quot;</span><span class="p">,</span> <span class="s2">&quot;Kval&quot;</span><span class="p">,</span> <span class="s2">&quot;Ktest&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="load_folds"><a class="viewcode-back" href="../data_prep.html#data_prep.load_folds">[docs]</a><span class="k">def</span> <span class="nf">load_folds</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads Imagenet 300 data from a .mat file in a nested dictionary format</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        File pointing to .mat file containing the data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    output : list</span>
+<span class="sd">        A list of 5 folds (objects) where each fold is a dictionary containing the keys</span>
+<span class="sd">        &quot;Xval&quot;, &quot;Xtrain&quot;, &quot;Xtest&quot;, &quot;Ytrain&quot;, &quot;Yval&quot;, &quot;Ytest&quot;.</span>
+<span class="sd">        where each key is a numpy.ndarray containing the underlying features.</span>
+<span class="sd">        Specifically, Xval, Xtrain, Xtest are :math:`n_{split} \\times d` arrays</span>
+<span class="sd">        where :math:`n_{split}` is the number of examples in each split while Yval,</span>
+<span class="sd">        Ytrain, Ytest are 1-dimensional integer arrays with each element in</span>
+<span class="sd">        {1, 2, 3, 4} encoding class membership.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">folds</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">fold_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Extract the train, test, validation sets for each fold</span>
+    <span class="k">for</span> <span class="n">foldnum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">fold_data</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="s2">&quot;folds&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">foldnum</span><span class="p">]</span>
+        <span class="n">fold_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="o">**</span><span class="p">{</span>
+                <span class="s2">&quot;X</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">:</span> <span class="n">fold_data</span><span class="p">[</span><span class="s2">&quot;K</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]</span>
+            <span class="p">},</span>
+            <span class="o">**</span><span class="p">{</span>
+                <span class="s2">&quot;Y</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">:</span> <span class="n">fold_data</span><span class="p">[</span><span class="s2">&quot;Y</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="n">fold_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fold_dict</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fold_list</span></div>
+
+
+<div class="viewcode-block" id="get_ranking_labeled_ML_obj"><a class="viewcode-back" href="../data_prep.html#data_prep.get_ranking_labeled_ML_obj">[docs]</a><span class="k">def</span> <span class="nf">get_ranking_labeled_ML_obj</span><span class="p">(</span><span class="n">folds</span><span class="p">,</span> <span class="n">foldnum</span><span class="p">,</span> <span class="n">train_k</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert multiclass labeled data in `folds` to a binary relevance format</span>
+<span class="sd">    where each training example will have similar and dissimilar examples in the</span>
+<span class="sd">    training set.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    folds : list</span>
+<span class="sd">        Generated by `data_prep.load_folds()`. See documentation for details</span>
+
+<span class="sd">    foldnum : int</span>
+<span class="sd">        Takes a value from 0-4 as there are 5 folds.</span>
+
+<span class="sd">    train_k : int</span>
+<span class="sd">        Number of similar examples to include in the label for each training point.</span>
+<span class="sd">        For example, if x[0] is similar to x[2], x[3], x[7] (same class) and `train_k` = 2,</span>
+<span class="sd">        we will only put two similar examples (e.g. x[2], x[3]) in the label for x[0].</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    output : list</span>
+<span class="sd">        A list of 5 folds (objects) where each fold is a dictionary containing the keys</span>
+<span class="sd">        &quot;Xval&quot;, &quot;Xtrain&quot;, &quot;Xtest&quot;, &quot;Ytrain&quot;, &quot;Yval&quot;, &quot;Ytest&quot;.</span>
+<span class="sd">        where each key is a numpy.ndarray containing the underlying features.</span>
+<span class="sd">        Specifically, Xval, Xtrain, Xtest are :math:`n_{split} \\times d` arrays</span>
+<span class="sd">        where n is the number of examples in each split while Yval, Ytrain, Ytest</span>
+<span class="sd">        are lists of `RankingLabel` namedtuples defined in `frml_python.label_utils`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">Xtrain</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Xtrain&quot;</span><span class="p">]</span>
+    <span class="n">Xval</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Xval&quot;</span><span class="p">]</span>
+    <span class="n">Xtest</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Xtest&quot;</span><span class="p">]</span>
+
+    <span class="n">Ytrain</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Ytrain&quot;</span><span class="p">]</span>
+    <span class="n">Yval</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Yval&quot;</span><span class="p">]</span>
+    <span class="n">Ytest</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">foldnum</span><span class="p">][</span><span class="s2">&quot;Ytest&quot;</span><span class="p">]</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating training ranking labels&quot;</span><span class="p">)</span>
+    <span class="p">(</span>
+        <span class="n">Xtrain_</span><span class="p">,</span>
+        <span class="n">Ytrain_</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">frml_python</span><span class="o">.</span><span class="n">label_utils</span><span class="o">.</span><span class="n">generate_training_ranking_labels_from_class</span><span class="p">(</span>
+        <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">train_k</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating validation ranking labels&quot;</span><span class="p">)</span>
+    <span class="n">Xval_</span><span class="p">,</span> <span class="n">Yval_</span> <span class="o">=</span> <span class="n">frml_python</span><span class="o">.</span><span class="n">label_utils</span><span class="o">.</span><span class="n">generate_test_ranking_labels_from_class</span><span class="p">(</span>
+        <span class="n">Xval</span><span class="p">,</span> <span class="n">Yval</span><span class="p">,</span> <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating test ranking labels&quot;</span><span class="p">)</span>
+    <span class="n">Xtest_</span><span class="p">,</span> <span class="n">Ytest_</span> <span class="o">=</span> <span class="n">frml_python</span><span class="o">.</span><span class="n">label_utils</span><span class="o">.</span><span class="n">generate_test_ranking_labels_from_class</span><span class="p">(</span>
+        <span class="n">Xtest</span><span class="p">,</span> <span class="n">Ytest</span><span class="p">,</span> <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span>
+    <span class="p">)</span>
+
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Xtrain&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Xtrain_</span>
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Xtest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Xtest_</span>
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Xval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Xval_</span>
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Ytrain&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ytrain_</span>
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Ytest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ytest_</span>
+    <span class="n">output</span><span class="p">[</span><span class="s2">&quot;Yval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Yval_</span>
+
+    <span class="k">return</span> <span class="n">output</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Daryl Lim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

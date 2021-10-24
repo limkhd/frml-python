@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>frml_python.sampler &mdash; frml-python  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> frml-python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">frml-python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>frml_python.sampler</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for frml_python.sampler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Module for stochastic gradient descent sampler</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SimpleSampler"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler">[docs]</a><span class="k">class</span> <span class="nc">SimpleSampler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple sampler to obtain training examples for stochastic gradient descent.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy.ndarray</span>
+<span class="sd">        A :math:`n \\times input\\_dim` matrix where n is the number of training examples</span>
+<span class="sd">        and input\\_dim is the input dimensionality.</span>
+<span class="sd">    Y : list</span>
+<span class="sd">        list of `RankingLabel` namedtuples defined in `frml_python.utils`. Each</span>
+<span class="sd">        RankingLabel has `sim` and `dif` elements containing the similar and dissimilar</span>
+<span class="sd">        examples for the corresponding training example in `X`.</span>
+<span class="sd">    rng : numpy.random.RandomState</span>
+<span class="sd">        RandomState used for sampling for reproducibility reasons</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_items</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">rng</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing sampler for SGD&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_negatives_per_item</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">dif</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">))]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">item_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_item_generator</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SimpleSampler.create_item_generator"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler.create_item_generator">[docs]</a>    <span class="k">def</span> <span class="nf">create_item_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create generator that continuously outputs item indices from a random</span>
+<span class="sd">        permutation of the training set for stochastic gradient descent.</span>
+
+
+<span class="sd">        Yields</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_items</span><span class="p">))</span>
+
+            <span class="n">sidx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">sidx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">s</span><span class="p">[</span><span class="n">sidx</span><span class="p">]</span>
+                <span class="n">sidx</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="SimpleSampler.sample_item"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler.sample_item">[docs]</a>    <span class="k">def</span> <span class="nf">sample_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a uniformly sampled item from internal item generator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">item_gen</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimpleSampler.sample_pos"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler.sample_pos">[docs]</a>    <span class="k">def</span> <span class="nf">sample_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Given a candidate item, returns a randomly sampled positive item for</span>
+<span class="sd">        that candidate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">sim</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pos_item</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">while</span> <span class="n">pos_item</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="n">pos_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">sim</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pos_item</span></div>
+
+<div class="viewcode-block" id="SimpleSampler.sample_neg"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler.sample_neg">[docs]</a>    <span class="k">def</span> <span class="nf">sample_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">pos_item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Given a candidate item, returns a randomly sampled negative item for</span>
+<span class="sd">        that candidate.</span>
+
+<span class="sd">        Currently, pos_item is not used as checking whether the sampled negative is</span>
+<span class="sd">        a mistake is too costly and does not have much impact when there are very</span>
+<span class="sd">        few positive items relative to the negative ones.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item : int</span>
+<span class="sd">        pos_item: int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">dif</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimpleSampler.sample_triplet"><a class="viewcode-back" href="../../frml_python.html#frml_python.sampler.SimpleSampler.sample_triplet">[docs]</a>    <span class="k">def</span> <span class="nf">sample_triplet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a randomly sampled (item, positive, negative) tuple for stochastic</span>
+<span class="sd">        gradient descent purposes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        triplet : Tuple</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_item</span><span class="p">()</span>
+        <span class="n">idx_j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_pos</span><span class="p">(</span><span class="n">idx_i</span><span class="p">)</span>
+        <span class="n">idx_k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_neg</span><span class="p">(</span><span class="n">idx_i</span><span class="p">,</span> <span class="n">idx_j</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">idx_i</span><span class="p">,</span> <span class="n">idx_j</span><span class="p">,</span> <span class="n">idx_k</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Daryl Lim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
