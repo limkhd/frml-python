@@ -19,3 +19,4 @@ tags
 [._]*.un~
 
 __pycache__
+*.log
